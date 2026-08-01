@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abiyyu Avicena Ismunandar — AI Tech Lead</title>
+<meta name="description" content="AI Tech Lead in Jakarta. I build software, and I build the agents that do the work alongside me.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --base:#131210;        /* warm near-black */
+  --base-2:#1B1915;      /* raised surface */
+  --paper:#EDE9DF;       /* bone */
+  --muted:#837C6E;       /* warm grey */
+  --acid:#C7F135;        /* the one hit */
+  --line:#2C2924;
+  --maxw:1280px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--base);color:var(--paper);
+  font-family:Archivo,'Helvetica Neue',Arial,sans-serif;
+  font-size:16px;line-height:1.55;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+/* horizontal only - a shorthand here would out-specify section/header vertical padding */
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:32px;padding-right:32px}
+@media(max-width:640px){.wrap{padding-left:20px;padding-right:20px}}
+
+/* ---- grain ---- */
+.grain{position:fixed;inset:-50%;pointer-events:none;z-index:9998;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---- micro type ---- */
+.mono{font-family:'JetBrains Mono',ui-monospace,Consolas,monospace;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;line-height:1.4}
+.mono.dim{color:var(--muted)}
+.acid{color:var(--acid)}
+
+/* ---- nav ---- */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  backdrop-filter:blur(14px);background:rgba(19,18,16,.72);
+  border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px;gap:20px}
+nav .id{font-weight:700;font-size:13px;letter-spacing:-.01em;white-space:nowrap}
+nav ul{display:flex;gap:26px;list-style:none}
+nav ul a{color:var(--muted);transition:color .25s}
+nav ul a:hover{color:var(--acid)}
+.status{display:flex;align-items:center;gap:7px;white-space:nowrap}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--acid);
+  box-shadow:0 0 0 0 rgba(199,241,53,.6);animation:pulse 2.4s infinite}
+@keyframes pulse{
+  70%{box-shadow:0 0 0 8px rgba(199,241,53,0)}
+  100%{box-shadow:0 0 0 0 rgba(199,241,53,0)}}
+@media(max-width:860px){nav ul{display:none}}
+@media(max-width:520px){.status .mono{display:none}}
+
+/* ---- hero ---- */
+header{padding-top:118px}
+.meta-row{display:flex;justify-content:space-between;gap:16px;
+  padding-bottom:22px;border-bottom:1px solid var(--line)}
+h1{
+  font-size:clamp(44px,10.4vw,158px);
+  font-weight:900;line-height:.87;letter-spacing:-.045em;
+  text-transform:uppercase;margin:36px 0 0;
+  font-stretch:105%;
+}
+h1 .out{
+  -webkit-text-stroke:1.6px var(--paper);color:transparent;
+  margin-left:.14em;
+}
+h1 em{font-style:italic;color:var(--acid);-webkit-text-stroke:0}
+.hero-grid{display:grid;grid-template-columns:1.32fr .68fr;gap:52px;
+  align-items:end;margin-top:44px}
+.hero-copy p{font-size:17px;color:var(--muted);max-width:46ch;line-height:1.62}
+.hero-copy p b{color:var(--paper);font-weight:600}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:12px 20px;
+  border:1px solid var(--paper);border-radius:999px;font-size:13px;font-weight:600;
+  transition:.3s var(--ease)}
+.btn.fill{background:var(--acid);border-color:var(--acid);color:#131210}
+.btn:hover{background:var(--paper);color:#131210}
+.btn.fill:hover{background:transparent;color:var(--acid);border-color:var(--acid)}
+
+/* photo as a print taped to the page: the bright curtain becomes deliberate */
+.portrait-wrap{position:relative;display:flex;justify-content:flex-end}
+.print{background:var(--paper);padding:12px 12px 42px;transform:rotate(-1.8deg);
+  box-shadow:0 18px 46px rgba(0,0,0,.6);position:relative;max-width:330px}
+.print img{width:100%;display:block;filter:grayscale(1) contrast(1.12)}
+.print .cap{position:absolute;left:14px;bottom:15px;color:#3a352c;
+  font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.1em;
+  text-transform:uppercase}
+.print::before{content:"";position:absolute;top:-12px;left:50%;
+  transform:translateX(-50%) rotate(2.4deg);width:76px;height:23px;
+  background:rgba(199,241,53,.75)}
+@media(max-width:860px){.portrait-wrap{justify-content:flex-start}}
+@media(max-width:860px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .portrait-wrap{max-width:300px}
+}
+
+/* ---- marquee ---- */
+.marquee{margin-top:96px;background:var(--acid);color:#131210;
+  border-top:1px solid var(--acid);border-bottom:1px solid var(--acid);
+  overflow:hidden;padding:13px 0;white-space:nowrap;user-select:none}
+.mtrack{display:inline-flex;gap:0;animation:slide 34s linear infinite}
+.marquee:hover .mtrack{animation-play-state:paused}
+.mtrack span{font-weight:800;font-size:14px;letter-spacing:.05em;
+  text-transform:uppercase;padding:0 26px;position:relative}
+.mtrack span::after{content:"◆";position:absolute;right:-6px;font-size:8px;top:50%;
+  transform:translateY(-50%);opacity:.55}
+@keyframes slide{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.mtrack{animation:none}.dot{animation:none}}
+
+/* ---- sections ---- */
+section{padding:104px 0;border-bottom:1px solid var(--line);margin-bottom:.5rem}
+.shead{display:flex;justify-content:space-between;align-items:baseline;
+  gap:20px;margin-bottom:52px;flex-wrap:wrap}
+.shead h2{font-size:clamp(28px,4.4vw,54px);font-weight:800;
+  letter-spacing:-.035em;text-transform:uppercase;line-height:.95}
+.shead .idx{color:var(--muted)}
+
+/* what i do */
+.do{display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border-top:1px solid var(--line)}
+.do > div{padding:30px 26px 34px;border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);transition:background .35s}
+.do > div:last-child{border-right:0}
+.do > div:hover{background:var(--base-2)}
+.do .n{color:var(--acid);margin-bottom:18px}
+.do h3{font-size:19px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+.do p{font-size:14.5px;color:var(--muted);line-height:1.6}
+@media(max-width:860px){.do{grid-template-columns:1fr}
+  .do > div{border-right:0}}
+
+/* work */
+.work{border-top:1px solid var(--line)}
+.item{display:grid;grid-template-columns:52px 1fr .82fr;gap:36px;
+  padding:40px 0;border-bottom:1px solid var(--line);align-items:start}
+.item .n{color:var(--muted);padding-top:5px}
+.item h3{font-size:clamp(24px,3.4vw,38px);font-weight:800;
+  letter-spacing:-.035em;text-transform:uppercase;line-height:.98}
+.item .role{margin-top:9px}
+.item p{margin-top:16px;font-size:15px;color:var(--muted);line-height:1.65;max-width:56ch}
+.item p b{color:var(--paper);font-weight:600}
+.item code{font-family:'JetBrains Mono',monospace;font-size:.84em;
+  background:var(--base-2);color:var(--acid);padding:2px 6px;border:1px solid var(--line)}
+.figs{display:flex;flex-wrap:wrap;gap:26px;margin-top:22px}
+.figs b{display:block;font-size:24px;font-weight:800;letter-spacing:-.03em;
+  line-height:1.1;color:var(--paper)}
+.visit{display:inline-flex;align-items:center;gap:8px;margin-top:20px;
+  color:var(--acid);border-bottom:1px solid transparent;transition:.25s}
+.visit:hover{border-bottom-color:var(--acid)}
+.item .shot{width:100%;border:1px solid var(--line);aspect-ratio:16/10;
+  object-fit:cover;object-position:top center;
+  filter:grayscale(.85) contrast(.92) brightness(.68);
+  transition:filter .5s var(--ease)}
+.item:hover .shot{filter:grayscale(0) contrast(1) brightness(1)}
+.item.noimg{grid-template-columns:52px 1fr}
+@media(max-width:960px){
+  .item,.item.noimg{grid-template-columns:1fr;gap:20px}
+  .item .n{padding-top:0}
+}
+
+/* timeline */
+.tl{border-top:1px solid var(--line)}
+.tl .row{display:grid;grid-template-columns:190px 1fr;gap:32px;
+  padding:26px 0;border-bottom:1px solid var(--line);transition:.3s}
+.tl .row:hover{padding-left:12px}
+.tl h3{font-size:18px;font-weight:700;letter-spacing:-.015em}
+.tl .org{color:var(--acid);margin-top:4px}
+.tl p{margin-top:9px;font-size:14.5px;color:var(--muted);max-width:62ch}
+@media(max-width:700px){.tl .row{grid-template-columns:1fr;gap:8px}}
+
+/* cta */
+.end{padding:112px 0;text-align:center;border-bottom:0}
+.end h2{font-size:clamp(34px,7.2vw,92px);font-weight:900;letter-spacing:-.045em;
+  text-transform:uppercase;line-height:.9;margin:22px 0 30px}
+.end h2 em{font-style:italic;color:var(--acid)}
+
+footer{border-top:1px solid var(--line);padding:30px 0 44px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a:hover{color:var(--acid)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);
+  transition:opacity .85s var(--ease),transform .85s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<nav>
+  <div class="wrap">
+    <span class="id">ABIYYU AI</span>
+    <ul class="mono">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#agents">Agents</a></li>
+      <li><a href="#now">Now</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <span class="status"><i class="dot"></i><span class="mono">Open to collaborate</span></span>
+  </div>
+</nav>
+
+<header class="wrap">
+  <div class="meta-row mono dim">
+    <span>AI Tech Lead — Jakarta, ID</span>
+    <span>Portfolio / 2026</span>
+  </div>
+
+  <h1>I build the<br><em>agents</em> <span class="out">that</span><br>build.</h1>
+
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <p>Six months treating agents as infrastructure rather than a chat window.
+      Before that, four years shipping payments software and a social app.
+      <b>I fix the thing that is actually broken, then I automate it.</b></p>
+      <div class="cta">
+        <a class="btn fill" href="#work">See the work</a>
+        <a class="btn" href="mailto:abiyyu.avicena23@gmail.com">Get in touch</a>
+      </div>
+    </div>
+    <div class="portrait-wrap">
+      <figure class="print">
+        <img src="assets/abi-crop.jpg" alt="Abiyyu Avicena Ismunandar">
+        <figcaption class="cap">Fig. 01 — Jakarta, 2026</figcaption>
+      </figure>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="mtrack">
+    <span>AI Agents</span><span>Automation</span><span>Product</span><span>AI Literacy</span>
+    <span>Browser Harnesses</span><span>Claude Skills</span><span>Analytics</span>
+    <span>AI Agents</span><span>Automation</span><span>Product</span><span>AI Literacy</span>
+    <span>Browser Harnesses</span><span>Claude Skills</span><span>Analytics</span>
+  </div>
+</div>
+
+<main>
+
+<section class="wrap rv">
+  <div class="shead">
+    <h2>What I<br>actually do</h2>
+    <span class="mono idx">[ 01 — 03 ]</span>
+  </div>
+  <div class="do">
+    <div>
+      <div class="mono n">01</div>
+      <h3>Agents as infrastructure</h3>
+      <p>Harnesses that drive a real browser, packaged skills a teammate runs without me,
+      and the checks that catch an agent quietly doing the wrong thing.</p>
+    </div>
+    <div>
+      <div class="mono n">02</div>
+      <h3>Product &amp; engineering</h3>
+      <p>Four years shipping. Mobile, payments, Laravel and Angular admin panels,
+      React Native. Comfortable in production databases at 2am.</p>
+    </div>
+    <div>
+      <div class="mono n">03</div>
+      <h3>AI literacy &amp; partnerships</h3>
+      <p>Getting an AI curriculum into Indonesian classrooms, then standing in front of
+      the room and teaching it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap rv" id="work">
+  <div class="shead">
+    <h2>Selected<br>work</h2>
+    <span class="mono idx">[ 01 — 04 ]</span>
+  </div>
+
+  <div class="work">
+    <article class="item">
+      <div class="mono n">01</div>
+      <div>
+        <h3>Day of AI<br>Indonesia</h3>
+        <div class="mono dim role">Program Manager · 2025 — Now</div>
+        <p>A national AI-literacy platform for Indonesian schools, PAUD through SMK,
+        free to use. I helped build the site. I also run the partnerships that get the
+        curriculum into actual classrooms, and I deliver the workshops myself, including
+        the creativity module for ages 5 to 10.</p>
+        <div class="figs">
+          <div><b>232,307</b><span class="mono dim">Students reached</span></div>
+          <div><b>1,205</b><span class="mono dim">Schools</span></div>
+          <div><b>1,293</b><span class="mono dim">Educators</span></div>
+        </div>
+        <a class="visit mono" href="https://dayofaiindonesia.org/">dayofaiindonesia.org ↗</a>
+      </div>
+      <img class="shot" src="assets/screenshots/dayofai-hero.png" alt="Day of AI Indonesia homepage">
+    </article>
+
+    <article class="item">
+      <div class="mono n">02</div>
+      <div>
+        <h3>Active<br>Silvers</h3>
+        <div class="mono dim role">Technical consultant · Singapore</div>
+        <p>An elder-care nonprofit whose admins could not disable a user account, and
+        nobody knew why. <b>The fix everyone expected was a red herring.</b> The real fault
+        sat a layer deeper, in how the database itself stored dates, and it had been
+        silently rejecting changes in production for months without raising a single error.
+        I traced it, fixed it at the root, and proved it on the live system before calling
+        it done.</p>
+        <p>Since then I swept 34 dialogs that hung forever whenever a request failed, and
+        shipped the four-phase Befriender workflow. Both repos now deploy on push, so
+        nobody hand-copies a build folder onto the server anymore.</p>
+        <a class="visit mono" href="https://cloud.activesilvers.org/">cloud.activesilvers.org ↗</a>
+      </div>
+      <img class="shot" src="assets/screenshots/activesilvers-login.png" alt="Active Silvers admin portal">
+    </article>
+
+    <article class="item noimg">
+      <div class="mono n">03</div>
+      <div>
+        <h3>Socles</h3>
+        <div class="mono dim role">Co-founder</div>
+        <p>A gamified social app in React Native and Python, started during my MSc at NUS.
+        I led pre-seed fundraising strategy and the product-market-fit work. I also built
+        the loop the team actually runs on day to day: analytics, weekly digests, playtest
+        feedback, and the game packs themselves. Passed selection for the PRIMESTeP
+        pre-incubation program.</p>
+      </div>
+    </article>
+
+    <article class="item noimg">
+      <div class="mono n">04</div>
+      <div>
+        <h3>OY!<br>Indonesia</h3>
+        <div class="mono dim role">Software Engineer · 2022 — 2024</div>
+        <p>Fintech. I led the mobile app build that carried the web product onto phones and
+        opened it to roughly 100,000 users, and I engineered the high-volume payment
+        gateways that had to hold under peak load. I was also the engineer sales came to
+        when an enterprise account's payments broke.</p>
+        <div class="figs">
+          <div><b>100,000+</b><span class="mono dim">Users unlocked</span></div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="wrap rv" id="agents">
+  <div class="shead">
+    <h2>Working with<br>AI agents</h2>
+    <span class="mono idx">[ 6 months ]</span>
+  </div>
+  <div class="do">
+    <div>
+      <div class="mono n">01</div>
+      <h3>A skills kit for a product team</h3>
+      <p>Twelve packaged Claude Skills that PMs and designers run themselves: competitor
+      research, interview synthesis, design-system audits, prototype generation, eval
+      writing. Portable folders, no machine-specific config.</p>
+    </div>
+    <div>
+      <div class="mono n">02</div>
+      <h3>Browser automation over CDP</h3>
+      <p>Agents driving a real Chrome: filling and submitting government grant forms with
+      file uploads, editing Google Slides while preserving the deck's fonts, maintaining
+      Notion databases. Written up as reusable recipes, including the parts that break.</p>
+    </div>
+    <div>
+      <div class="mono n">03</div>
+      <h3>An analytics loop that runs itself</h3>
+      <p>A weekly digest that pulls product data, crash reports, in-app chat feedback per
+      player, and push performance, then writes the narrative into Notion. The team reads
+      a page instead of five dashboards.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap rv" id="now">
+  <div class="shead">
+    <h2>Now</h2>
+    <span class="mono idx">[ Timeline ]</span>
+  </div>
+  <div class="tl">
+    <div class="row">
+      <div class="mono dim">Jul 2025 — Present</div>
+      <div>
+        <h3>Program Manager</h3>
+        <div class="mono org">Day of AI Indonesia</div>
+        <p>AI-literacy curriculum into schools and government institutions across Indonesia.
+        Partnerships, keynotes, and the workshops themselves.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="mono dim">2024 — 2025</div>
+      <div>
+        <h3>MSc, Venture Creation</h3>
+        <div class="mono org">National University of Singapore</div>
+        <p>Co-founded Socles during the program. Technical consultant to Active Silvers,
+        translating their operational requirements into architecture.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="mono dim">2022 — 2024</div>
+      <div>
+        <h3>Software Engineer</h3>
+        <div class="mono org">OY! Indonesia</div>
+        <p>Mobile and payments. The app migration, the acceptance gateways, and whatever
+        broke in production that week.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="mono dim">2018 — 2022</div>
+      <div>
+        <h3>B.Eng, Computer Science</h3>
+        <div class="mono org">Institut Teknologi Bandung</div>
+        <p>Selected for the Bangkit Academy machine-learning cohort. First semester at the
+        University of Maryland on the Global Communities program.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="end wrap rv" id="contact">
+  <span class="mono dim">Next step</span>
+  <h2>Let's build<br><em>something</em></h2>
+  <div class="cta" style="justify-content:center">
+    <a class="btn fill" href="mailto:abiyyu.avicena23@gmail.com">abiyyu.avicena23@gmail.com</a>
+    <a class="btn" href="https://linkedin.com/in/abiyyu-ai">LinkedIn</a>
+    <a class="btn" href="https://github.com/abiyyu2301">GitHub</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap mono dim">
+    <span>© 2026 Abiyyu Avicena Ismunandar</span>
+    <span>Jakarta, Indonesia</span>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+},{threshold:.08,rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
